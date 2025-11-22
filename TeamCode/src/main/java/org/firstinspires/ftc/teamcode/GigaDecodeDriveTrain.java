@@ -56,6 +56,8 @@ public class GigaDecodeDriveTrain {
             while (opModeIsActive()) {
                 double max;
 
+                // how gamepad works https://www.youtube.com/watch?v=gXegsVvXLd0
+
                 double forward = -gamepad1.right_stick_y;
                 double sideways = gamepad1.right_stick_x;
                 double turn = gamepad1.left_stick_x;
