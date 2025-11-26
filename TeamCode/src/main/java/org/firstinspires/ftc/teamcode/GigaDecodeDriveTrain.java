@@ -94,10 +94,8 @@ public class GigaDecodeDriveTrain {
 
                 if (gamepad1.right_trigger > 0.5) {
                     Launcher.setVelocity(1940);//1125
-
-
-
-                }else if(gamepad1.b){
+                }
+                else {
                     Launcher.setVelocity(0);
                 }
 
