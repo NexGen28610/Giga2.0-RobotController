@@ -60,7 +60,7 @@ public class GigaDecodeDriveTrain {
 
                 double forward = -gamepad1.right_stick_y;
                 double sideways = gamepad1.right_stick_x;
-                double turn = gamepad1.left_stick_x;
+                double turn = gamepad1.left_stick_x /0.5;
 
 
                 double leftDriveFrontPower = forward + sideways + turn;
@@ -89,15 +89,32 @@ public class GigaDecodeDriveTrain {
                 if (gamepad1.dpad_left){
                     IntakeMotor.setPower(1);
                     
-                } else if(gamepad1.dpad_right)
-            IntakeMotor.setPower(0);
-
-                if (gamepad1.right_trigger > 0.5) {
-                    Launcher.setVelocity(1940);//1125
-                }
-                else {
+                } else if(gamepad1.dpad_right) {
+                    IntakeMotor.setPower(-1);
+                }IntakeMotor.setPower(0);
+                if (gamepad1.a) {
+                    Launcher.setVelocity(1800);//1125
+                } else if (gamepad1.b) {
                     Launcher.setVelocity(0);
                 }
+                if (gamepad1.x){
+                    Launcher.setVelocity(1290);
+                } else if (gamepad1.y) {
+                    Launcher.setVelocity(0);
+                }
+                // Launcher.setVelocity(0);
+
+
+                /*if (gamepad1.left_trigger > 0.5){
+                    Launcher.setVelocity(2000);
+                }Launcher.setVelocity(0);
+*/
+                telemetry.addData("Right F", rightDriveFront.getCurrentPosition());
+                telemetry.addData("Right B", rightDriveBack.getCurrentPosition());
+                telemetry.addData("Left F", leftDriveFront.getCurrentPosition());
+                telemetry.addData("Left B", leftDriveBack.getCurrentPosition());
+                telemetry.update();
+
 
 
             }

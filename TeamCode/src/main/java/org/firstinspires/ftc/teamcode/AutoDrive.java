@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name ="AutoDrive",group = "Autonomous")
@@ -32,11 +33,16 @@ public class AutoDrive extends LinearOpMode {
         rightDriveFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightDriveBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        leftDriveFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightDriveFront.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightDriveBack.setDirection(DcMotorSimple.Direction.FORWARD);
+
         telemetry.addData("Start", "Position");
 
         //shoot
-        IntakeMotor = hardwareMap.get(DcMotor.class, "intake");
+        IntakeMotor = hardwareMap.get(DcMotor.class, "IntakeMotor");
         Launcher = hardwareMap.get(DcMotorEx.class, "Launcher");
+        IntakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         IntakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -76,31 +82,35 @@ public class AutoDrive extends LinearOpMode {
             rightDriveBack.setPower(rightDiveBackPower);
             leftDriveBack.setPower(leftDriveBackPower);
             //END OF DRIVING ONLY
-
-            Launcher.setVelocity(1125);
-            sleep(2000);
-
+            drive_distance(-70);
+            Launcher.setVelocity(1290);
+            sleep(6000);
             shoot();
-
             shoot();
-
             shoot();
 
             Launcher.setVelocity(0);
-            drive_distance(-60);
-            turn(-25);
-            drive_distance(68);
+            IntakeMotor.setPower(0);
+
+            drive_distance(-63);
+            turn(-45);
+            drive_distance(78);
+
         }
     }
 
     public void shoot() {
-        IntakeMotor.setPower(0.8);
+        IntakeMotor.setPower(1);
         runtime.reset();
-        while (runtime.milliseconds() < 2000) {
+        while (runtime.milliseconds() < 3000) {
 
-            if (runtime.milliseconds()>300){
+            if (runtime.milliseconds()>500){
     IntakeMotor.setPower(0);
 }
+            if (runtime.milliseconds()>500){
+                IntakeMotor.setPower(0);
+            }
+
         }
     }
 
@@ -130,8 +140,15 @@ rightDriveBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDriveBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         while (leftDriveBack.isBusy()){
-
+            rightDriveBack.setPower(1);
+            rightDriveFront.setPower(1);
+            leftDriveFront.setPower(1);
+            leftDriveBack.setPower(1);
         }
+        rightDriveBack.setPower(0);
+        rightDriveFront.setPower(0);
+        leftDriveFront.setPower(0);
+        leftDriveBack.setPower(0);
 
 
     }
@@ -161,8 +178,14 @@ rightDriveBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDriveBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         while (leftDriveBack.isBusy()){
-
+            rightDriveBack.setPower(1);
+            rightDriveFront.setPower(1);
+            leftDriveFront.setPower(1);
+            leftDriveBack.setPower(1);
         }
-
-    }
+        rightDriveBack.setPower(0);
+        rightDriveFront.setPower(0);
+        leftDriveFront.setPower(0);
+        leftDriveBack.setPower(0);
+        }
 }
