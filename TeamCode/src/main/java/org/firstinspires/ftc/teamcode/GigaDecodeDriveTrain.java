@@ -16,7 +16,7 @@ public class GigaDecodeDriveTrain {
         DcMotor leftDriveFront = null;
 
         //ball shooter
-          DcMotor IntakeMotor;
+          DcMotorEx IntakeMotor;
          DcMotorEx Launcher;
 
         @Override
@@ -39,7 +39,7 @@ public class GigaDecodeDriveTrain {
 
 
             //ball shooter
-             IntakeMotor=hardwareMap.get(DcMotor.class,"IntakeMotor");
+             IntakeMotor=hardwareMap.get(DcMotorEx.class,"IntakeMotor");
             Launcher=hardwareMap.get(DcMotorEx.class,"Launcher");
 
             Launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -87,10 +87,10 @@ public class GigaDecodeDriveTrain {
                 //END OF DRIVING ONLY
 
                 if (gamepad1.dpad_left){
-                    IntakeMotor.setPower(1);
+                    IntakeMotor.setVelocity(2000);
                     
                 } else if(gamepad1.dpad_right) {
-                    IntakeMotor.setPower(-1);
+                    IntakeMotor.setVelocity(-2000);
                 }IntakeMotor.setPower(0);
                 if (gamepad1.a) {
                     Launcher.setVelocity(1800);//1125
