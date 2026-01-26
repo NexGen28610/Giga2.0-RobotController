@@ -64,7 +64,7 @@ For support, contact tech@gobilda.com
 
 public class SensorGoBildaPinpointExample extends LinearOpMode {
 
-    GoBildaPinpointDriver odo; // Declare OpMode member for the Odometry Computer
+    GoBildaPinpointDriver Odometry; // Declare OpMode member for the Odometry Computer
 
     double oldTime = 0;
 
@@ -75,7 +75,7 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
 
-        odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
+        Odometry = hardwareMap.get(GoBildaPinpointDriver.class,"Odometry");
 
         /*
         Set the odometry pod positions relative to the point that the odometry computer tracks around.
@@ -85,7 +85,7 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
         the tracking point the Y (strafe) odometry pod is. forward of center is a positive number,
         backwards is a negative number.
          */
-        odo.setOffsets(-84.0, -168.0, DistanceUnit.MM); //these are tuned for 3110-0002-0001 Product Insight #1
+        Odometry.setOffsets(-84.0, -168.0, DistanceUnit.MM); //these are tuned for 3110-0002-0001 Product Insight #1
 
         /*
         Set the kind of pods used by your robot. If you're using goBILDA odometry pods, select either
@@ -93,8 +93,8 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
         If you're using another kind of odometry pod, uncomment setEncoderResolution and input the
         number of ticks per unit of your odometry pod.
          */
-        odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
-        //odo.setEncoderResolution(13.26291192, DistanceUnit.MM);
+        Odometry.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+        //Odometry.setEncoderResolution(13.26291192, DistanceUnit.MM);
 
 
         /*
@@ -102,7 +102,7 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
         increase when you move the robot forward. And the Y (strafe) pod should increase when
         you move the robot to the left.
          */
-        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        Odometry.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
 
 
         /*
@@ -113,14 +113,14 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
         This is recommended before you run your autonomous, as a bad initial calibration can cause
         an incorrect starting value for x, y, and heading.
          */
-        //odo.recalibrateIMU();
-        odo.resetPosAndIMU();
+        //Odometry.recalibrateIMU();
+        Odometry.resetPosAndIMU();
 
         telemetry.addData("Status", "Initialized");
-        telemetry.addData("X offset", odo.getXOffset(DistanceUnit.MM));
-        telemetry.addData("Y offset", odo.getYOffset(DistanceUnit.MM));
-        telemetry.addData("Device Version Number:", odo.getDeviceVersion());
-        telemetry.addData("Heading Scalar", odo.getYawScalar());
+        telemetry.addData("X offset", Odometry.getXOffset(DistanceUnit.MM));
+        telemetry.addData("Y offset", Odometry.getYOffset(DistanceUnit.MM));
+        telemetry.addData("Device Version Number:", Odometry.getDeviceVersion());
+        telemetry.addData("Heading Scalar", Odometry.getYawScalar());
         telemetry.update();
 
         // Wait for the game to start (driver presses START)
@@ -135,21 +135,21 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
             Request an update from the Pinpoint odometry computer. This checks almost all outputs
             from the device in a single I2C read.
              */
-            odo.update();
+            Odometry.update();
 
             /*
             Optionally, you can update only the heading of the device. This takes less time to read, but will not
             pull any other data. Only the heading (which you can pull with getHeading() or in getPosition().
              */
-            //odo.update(GoBildaPinpointDriver.ReadData.ONLY_UPDATE_HEADING);
+            //Odometry.update(GoBildaPinpointDriver.ReadData.ONLY_UPDATE_HEADING);
 
 
             if (gamepad1.a){
-                odo.resetPosAndIMU(); //resets the position to 0 and recalibrates the IMU
+                Odometry.resetPosAndIMU(); //resets the position to 0 and recalibrates the IMU
             }
 
             if (gamepad1.b){
-                odo.recalibrateIMU(); //recalibrates the IMU without resetting position
+                Odometry.recalibrateIMU(); //recalibrates the IMU without resetting position
             }
 
             /*
@@ -167,14 +167,14 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
             /*
             gets the current Position (x & y in mm, and heading in degrees) of the robot, and prints it.
              */
-            Pose2D pos = odo.getPosition();
+            Pose2D pos = Odometry.getPosition();
             String data = String.format(Locale.US, "{X: %.3f, Y: %.3f, H: %.3f}", pos.getX(DistanceUnit.MM), pos.getY(DistanceUnit.MM), pos.getHeading(AngleUnit.DEGREES));
             telemetry.addData("Position", data);
 
             /*
             gets the current Velocity (x & y in mm/sec and heading in degrees/sec) and prints it.
              */
-            String velocity = String.format(Locale.US,"{XVel: %.3f, YVel: %.3f, HVel: %.3f}", odo.getVelX(DistanceUnit.MM), odo.getVelY(DistanceUnit.MM), odo.getHeadingVelocity(UnnormalizedAngleUnit.DEGREES));
+            String velocity = String.format(Locale.US,"{XVel: %.3f, YVel: %.3f, HVel: %.3f}", Odometry.getVelX(DistanceUnit.MM), Odometry.getVelY(DistanceUnit.MM), Odometry.getHeadingVelocity(UnnormalizedAngleUnit.DEGREES));
             telemetry.addData("Velocity", velocity);
 
 
@@ -188,9 +188,9 @@ public class SensorGoBildaPinpointExample extends LinearOpMode {
             FAULT_Y_POD_NOT_DETECTED - The device does not detect a Y pod plugged in
             FAULT_BAD_READ - The firmware detected a bad I²C read, if a bad read is detected, the device status is updated and the previous position is reported
             */
-            telemetry.addData("Status", odo.getDeviceStatus());
+            telemetry.addData("Status", Odometry.getDeviceStatus());
 
-            telemetry.addData("Pinpoint Frequency", odo.getFrequency()); //prints/gets the current refresh rate of the Pinpoint
+            telemetry.addData("Pinpoint Frequency", Odometry.getFrequency()); //prints/gets the current refresh rate of the Pinpoint
 
             telemetry.addData("REV Hub Frequency: ", frequency); //prints the control system refresh rate
             telemetry.update();

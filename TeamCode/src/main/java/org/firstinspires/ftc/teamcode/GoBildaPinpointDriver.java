@@ -94,7 +94,7 @@ public class GoBildaPinpointDriver extends I2cDeviceSynchDevice<I2cDeviceSynchSi
 
 
     //Register map of the i2c device
-    private enum Register {
+    public enum Register {
         DEVICE_ID       (1),
         DEVICE_VERSION  (2),
         DEVICE_STATUS   (3),
@@ -114,7 +114,7 @@ public class GoBildaPinpointDriver extends I2cDeviceSynchDevice<I2cDeviceSynchSi
         YAW_SCALAR      (17),
         BULK_READ       (18);
 
-        private final int bVal;
+        public final int bVal;
 
         Register(int bVal){
             this.bVal = bVal;
@@ -132,7 +132,7 @@ public class GoBildaPinpointDriver extends I2cDeviceSynchDevice<I2cDeviceSynchSi
         FAULT_IMU_RUNAWAY        (1 << 4),
         FAULT_BAD_READ           (1 << 5);
 
-        private final int status;
+        public final int status;
 
         DeviceStatus(int status){
             this.status = status;
