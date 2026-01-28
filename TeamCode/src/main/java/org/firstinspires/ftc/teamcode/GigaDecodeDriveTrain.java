@@ -90,24 +90,27 @@ public class GigaDecodeDriveTrain {
 
                 if (gamepad1.dpad_left){
                     IntakeMotor.setVelocity(2000);
-                    
+
                 } else if(gamepad1.dpad_right) {
                     IntakeMotor.setVelocity(-2000);
                 }IntakeMotor.setPower(0);
+
                 if (gamepad1.aWasPressed()) {
                     isShootFar = !isShootFar;
-
-
                     //Launcher.setVelocity(1700);//1125
-                } else if (gamepad1.b) {
-                    Launcher.setVelocity(0);
-                }
-                if (gamepad1.x){
-                    /*Launcher.setVelocity(1290);*/
+                } else if (gamepad1.xWasPressed()) {
                     isShootClose = !isShootClose;
-                } else if (gamepad1.y) {
-                    Launcher.setVelocity(0);
                 }
+
+                                                                                             //else if (gamepad1.b) {
+                                                                                                      //Launcher.setVelocity(0);
+                                                                                                                 // }
+                                                                                         /* if (gamepad1.x){
+                                                                                             // Launcher.setVelocity(1290);
+                                                                                               isShootClose = !isShootClose;
+               }*/                                                                            //else if (gamepad1.y) {
+                                                                                            // Launcher.setVelocity(0);
+                                                                                                     // }
                 if (gamepad1.right_trigger > 0.3){
                     Launcher.setVelocity(-900);
                 }
@@ -139,6 +142,7 @@ public class GigaDecodeDriveTrain {
         }
     }
 }
+
 /*
         THIS IS RHE TELE OP CODE WITH NO MODEFICATIONS OR CHANGES MADE TO IT
         DcMotor rightDriveFront = null;
