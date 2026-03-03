@@ -125,6 +125,14 @@ public class GigaDecodeDriveTrain {
                 }
 
 
+
+                //while(gamepad1.dpad_up){
+                 //   stopper.setPosition(0);
+                //}
+                //while(gamepad1.dpad_down){
+                 //   stopper.setPosition(1);
+                //}
+
                 /*if (gamepad1.left_trigger > 0.5){
                     Launcher.setVelocity(2000);
                 }Launcher.setVelocity(0);
