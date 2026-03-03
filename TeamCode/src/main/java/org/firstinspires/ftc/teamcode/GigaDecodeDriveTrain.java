@@ -31,6 +31,8 @@ public class GigaDecodeDriveTrain {
             leftDriveBack = hardwareMap.get(DcMotor.class, "leftDriveBack");
             leftDriveFront = hardwareMap.get(DcMotor.class, "leftDriveFront");
 
+            stopper = hardwareMap.get(Servo.class,"stopper");
+
             leftDriveFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             leftDriveBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             rightDriveFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
