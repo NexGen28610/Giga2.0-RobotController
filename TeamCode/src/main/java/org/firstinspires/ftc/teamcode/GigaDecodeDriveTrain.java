@@ -16,6 +16,7 @@ public class GigaDecodeDriveTrain {
         DcMotor leftDriveBack = null;
         DcMotor leftDriveFront = null;
 
+        Servo stopper;
 
         //ball shooter
         boolean isShootFar =false,isShootClose =false;
