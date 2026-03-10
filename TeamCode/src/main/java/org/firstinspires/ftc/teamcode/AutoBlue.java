@@ -83,17 +83,19 @@ import com.qualcomm.robotcore.util.ElapsedTime;
                 leftDriveBack.setPower(leftDriveBackPower);
                 //END OF DRIVING ONLY
 
-                drive_distance(-156); // (-160) in AutoDrive aka Auto Red
-                Launcher.setVelocity(1225); // change it to (1185)
+                drive_distance(-150); // (-147) in AutoDrive aka Auto Red
+               // Launcher.setVelocity(1185);// full battery
+               Launcher.setVelocity(1209); // change it to (1185)
                 sleep(2000);
 
                 shoot();
 
                 shoot();
 
+                Launcher.setVelocity(-110);
                 shoot();
 
-                sleep(1000);
+              //  sleep(1000);
                 Launcher.setVelocity(0);
                 IntakeMotor.setVelocity(0);
                 turn(-43); // turn -39
@@ -101,100 +103,64 @@ import com.qualcomm.robotcore.util.ElapsedTime;
                 //turn - = turn right
                 //turn += turn left
 
-                //this code allows us to drive to the pre setted balls, pick them up, then drive back to the goal to score points
-
            //intake of artifacts
-            IntakeMotor.setVelocity(1800); // (1000)
-            drive_distance(70); // 73
+                Launcher.setVelocity(0);
+
+            drive_distance(78); // 73
             Collection();
 
+            drive_distance(35);
+            Collection();
+
+            drive_distance(35);
+            Collection();
+
+            drive_distance(-99); // -99
+            turn(44); // -39
+          //  drive_distance(60);
+                IntakeMotor.setVelocity(-900);
+            //turn(43);
             drive_distance(30);
-            Collection();
-
-            drive_distance(30);
-            Collection();
-
-            drive_distance(-60); // -99
-            turn(-43); // -39
-            drive_distance(60);
-            turn(43);
-
-            sleep(1000);
-            Launcher.setVelocity(1225);
+            sleep(600);
+            Launcher.setVelocity(1200);
             sleep(2000);
             shoot();
             shoot();
-            shoot();
 
+            turn(-42);
+            drive_distance(125);
             Launcher.setVelocity(0);
             IntakeMotor.setVelocity(0);
             rightDriveBack.setPower(0);
             rightDriveFront.setPower(0);
             leftDriveFront.setPower(0);
             leftDriveBack.setPower(0);
+            sleep(100000);
 
-                // drive_distance(70);
-/*
-         OG SHOOT
-            drive_distance(80);
-            Launcher.setVelocity(1200);
-            sleep(2000);
-
-            shoot();
-
-            shoot();
-
-            shoot();
-
-            sleep(1000);
-            Launcher.setVelocity(0);
-            IntakeMotor.setPower(0);
-            turn(-45);
-            drive_distance(-63);
-
-              //  NOT EXACT MESSUREMENTS
-            //this code allows us to drive to the pre setted balls, pick them up, then drive back to the goal to score points
-             turn(-95);
-            drive_distance(-60);
-            turn(90);
-            drive_distance(-80);
-            drive_distance(80);
-             turn(-90);
-            drive_distance(-60);
-
-            Launcher.setVelocity(1200);
-            sleep(2000);
-            shoot();
-            shoot();
-            shoot();
-
-            Launcher.setVelocity(0);
-            IntakeMotor.setPower(0);
-            */
 
 
             }
         }
 
         public void shoot() {
-            IntakeMotor.setVelocity(2000);
+            IntakeMotor.setVelocity(2105);
             runtime.reset();
-            while (runtime.milliseconds() < 2000) {
+            while (runtime.milliseconds() < 1770) {
 
                 if (runtime.milliseconds() > 1100) {
                     IntakeMotor.setVelocity(0);
                 }
-                //  if (runtime.milliseconds()>900){
-                //     IntakeMotor.setPower(0);
-                //}
+
             }
         }
 
         public void Collection(){
             IntakeMotor.setVelocity(2000);
-            while (runtime.milliseconds()< 1800);{
+            runtime.reset();
+            while (runtime.milliseconds()< 1750);{
 
                 if (runtime.milliseconds()>1000);
+
                 IntakeMotor.setVelocity(0);
             }
         }
@@ -276,3 +242,41 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
     }
 
+// drive_distance(70);
+/*
+         OG SHOOT
+            drive_distance(80);
+            Launcher.setVelocity(1200);
+            sleep(2000);
+
+            shoot();
+
+            shoot();
+
+            shoot();
+
+            sleep(1000);
+            Launcher.setVelocity(0);
+            IntakeMotor.setPower(0);
+            turn(-45);
+            drive_distance(-63);
+
+              //  NOT EXACT MESSUREMENTS
+            //this code allows us to drive to the pre setted balls, pick them up, then drive back to the goal to score points
+             turn(-95);
+            drive_distance(-60);
+            turn(90);
+            drive_distance(-80);
+            drive_distance(80);
+             turn(-90);
+            drive_distance(-60);
+
+            Launcher.setVelocity(1200);
+            sleep(2000);
+            shoot();
+            shoot();
+            shoot();
+
+            Launcher.setVelocity(0);
+            IntakeMotor.setPower(0);
+            */

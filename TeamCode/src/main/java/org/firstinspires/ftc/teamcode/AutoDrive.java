@@ -102,92 +102,81 @@ public class AutoDrive extends LinearOpMode {
             leftDriveBack.setPower(leftDriveBackPower);
             //END OF DRIVING ONLY
 
-           drive_distance(-160);
-          // Launcher.setVelocity(1225);
-           Launcher.setVelocity(1185); //changed set velocity from 1200 to 1185
+           drive_distance(-150);// distance 147
+          // Launcher.setVelocity(1185); //changed set velocity from 1200 to 1185
+              Launcher.setVelocity(1209);
             sleep(2000);
 
             shoot();
 
+            shoot();
             //Launcher.setVelocity(1175);
 
             shoot();
 
-            //Launcher.setVelocity(1175);
+            Launcher.setVelocity(-110);
 
             shoot();
-
-            //added
-
-            Launcher.setVelocity(-100);
-
-            shoot();
-
-            //added
 
             //sleep(2100);
             Launcher.setVelocity(0);
             IntakeMotor.setVelocity(0);
-            turn(39);
+            turn(43);
 
             //turn - = turn left
             //turn + = turn right
 
-            //this code allows us to drive to the pre set balls, pick them up, then drive back to the goal to score points
-
             //intake of artifacts
             Launcher.setVelocity(0);
-            IntakeMotor.setVelocity(1000);
-            drive_distance(73); // can't we possibly change this distance to run it continuously until it collects 2 artifacts?//
+           // IntakeMotor.setVelocity(1000);
+            drive_distance(75); // can't we possibly change this distance to run it continuously until it collects 2 artifacts?//
             Collection();
 
-            drive_distance(30); // need to increase this distance maybe to 37 if we do above
+            drive_distance(35); // need to increase this distance maybe to 37 if we do above
             Collection();
 
-           // drive_distance(30);
-            //Collection();
+            drive_distance(35);
+            Collection();
+
 
             drive_distance(-99);
-            turn(-39);
-            // dd (60);
-
-
-            sleep(1000);
-            Launcher.setVelocity(1100);
+            turn(-44);
+            IntakeMotor.setVelocity(-900);
+            //turn(43);
+            drive_distance(30);
+            sleep(600);
+            Launcher.setVelocity(1200);
             sleep(2000);
             shoot();
             shoot();
-            shoot();
 
+            turn(42);
+            drive_distance(125);
             Launcher.setVelocity(0);
             IntakeMotor.setVelocity(0);
             rightDriveBack.setPower(0);
             rightDriveFront.setPower(0);
             leftDriveFront.setPower(0);
             leftDriveBack.setPower(0);
-
+            sleep(100000);
         }
     }
 
     public void shoot() {
         IntakeMotor.setVelocity(2105);
         runtime.reset();
-        while (runtime.milliseconds() < 1800) {
+        while (runtime.milliseconds() < 1770) {
 
             if (runtime.milliseconds() > 1100){
                  IntakeMotor.setVelocity(0);
                                             }
-         //  if (runtime.milliseconds()>900){
-           //     IntakeMotor.setPower(0);
-            //}
-
         }
     }
 
     public void Collection() {
         IntakeMotor.setVelocity(2000);
         runtime.reset();
-        while (runtime.milliseconds() < 1800) {
+        while (runtime.milliseconds() < 1750) {
 
             if (runtime.milliseconds() > 1000) {
                 IntakeMotor.setVelocity(0);
